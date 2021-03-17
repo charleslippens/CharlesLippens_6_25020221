@@ -1,0 +1,27 @@
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+    "email":"test10@gmail.com",
+    "password":"test"
+}
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email":"test10@gmail.com",
+    "password":"test"
+}
+###
+GET http://localhost:3000/api/sauces
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ4YzhkMzAzMDhkNDJhMDAyMzY4ZDIiLCJpYXQiOjE2MTUzODI4MzcsImV4cCI6MTYxNTQ2OTIzN30.YeQ2_yI-6oMxdQ2IN7eTj4JORr8wfHYTtLqSqv85Vg0
+###
+PUT http://localhost:3000/api/sauces/60472e4f789bede68cdc8a09
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ4YzhkMzAzMDhkNDJhMDAyMzY4ZDIiLCJpYXQiOjE2MTUzODI4MzcsImV4cCI6MTYxNTQ2OTIzN30.YeQ2_yI-6oMxdQ2IN7eTj4JORr8wfHYTtLqSqv85Vg0
+Content-Type: application/json
+
+{
+    "manufacturer": "testbis",
+    "userId": "6048c8d30308d42a002368d2"
+}
