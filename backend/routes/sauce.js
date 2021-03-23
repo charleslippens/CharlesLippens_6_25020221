@@ -1,25 +1,31 @@
+// Permet d'importer express
 const express = require("express");
+// Crée un routeur
 const router = express.Router();
+// Permet d'importer le middleware auth
 const auth = require("../middleware/auth");
+// Permet d'importer le middleware multer
 const multer = require("../middleware/multer-config");
+// Permet d'importer le controller sauce
 const sauceCtrl = require("../controllers/sauce");
 
-//pour afficher toutes les sauces
+//route get pour afficher toutes les sauces
 router.get("/", auth, sauceCtrl.getAllSauce);
 
-//pour enregistrer des sauces dans la BDD
+//route post pour enregistrer des sauces dans la BDD
 router.post("/", auth, multer, sauceCtrl.createSauce);
 
-//pour afficher une sauce
+//route getpour afficher une sauce
 router.get("/:id", auth, sauceCtrl.getOneSauce);
 
-//pour modifier une sauce
+//route put pour modifier une sauce
 router.put("/:id", auth, multer, sauceCtrl.modifySauce);
 
-//pour liker une sauce
+//route post pour liker une sauce
 router.post("/:id/like", auth, sauceCtrl.likeSauce);
 
-//pour supprimer une sauce
+//route delete pour supprimer une sauce
 router.delete("/:id", auth, sauceCtrl.deleteSauce);
 
+// Permet d'exporter le router
 module.exports = router;
