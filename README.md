@@ -20,9 +20,7 @@ Vous devrez avoir Node-sass installé à part.
 
 ▹ A partir du dossier frontend, exécutez npm install puis ng serve;
 
-▹ Clonez ce repository.
-
-▹ Copiez le fichier .env.example en remplaçant les valeurs par défaut pour accéder à la base de données ;
+▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données ;
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server;
 
