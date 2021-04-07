@@ -2,26 +2,34 @@ POST http://localhost:3000/api/auth/signup
 Content-Type: application/json
 
 {
-    "email":"test10@gmail.com",
-    "password":"test"
+    "email":"testsauce5@gmail.com",
+    "password":"vM8oA1eH0xW5dD5a@"
 }
 ###
 POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"test10@gmail.com",
-    "password":"test"
+    "email":"testsauce6@gmail.com",
+    "password":"lF4wC8sL1jK9sA0d@"
 }
 ###
-GET http://localhost:3000/api/sauces
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ4YzhkMzAzMDhkNDJhMDAyMzY4ZDIiLCJpYXQiOjE2MTUzODI4MzcsImV4cCI6MTYxNTQ2OTIzN30.YeQ2_yI-6oMxdQ2IN7eTj4JORr8wfHYTtLqSqv85Vg0
+GET http://localhost:3000/api/sauces/605a651f0c3cdaf244fe9ab9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDVhNjU1YjBjM2NkYWYyNDRmZTlhYmEiLCJpYXQiOjE2MTY1Mzc0MzAsImV4cCI6MTYxNjYyMzgzMH0.5BMoFfgO0Zk53AMv2Iu9KVMEzHQZLg-kLY1MUwR_hVI
 ###
-PUT http://localhost:3000/api/sauces/60472e4f789bede68cdc8a09
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDQ4YzhkMzAzMDhkNDJhMDAyMzY4ZDIiLCJpYXQiOjE2MTUzODI4MzcsImV4cCI6MTYxNTQ2OTIzN30.YeQ2_yI-6oMxdQ2IN7eTj4JORr8wfHYTtLqSqv85Vg0
+
+PUT http://localhost:3000/api/sauces/606d82903bd62022090003ae
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDZkODJiODNiZDYyMDIyMDkwMDAzYWYiLCJpYXQiOjE2MTc3OTIyMDIsImV4cCI6MTYxNzg3ODYwMn0.OAbAHznSk6MCsGFNpg_GDoHey9T2jBtLTPmNvqMqUr4
 Content-Type: application/json
 
 {
-    "manufacturer": "testbis",
-    "userId": "6048c8d30308d42a002368d2"
+    "manufacturer": "testy",
+    "userId": "606d82b83bd62022090003af"
 }
+###
+
+
+
+
+
+

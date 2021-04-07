@@ -30,6 +30,8 @@ exports.likeSauce = (req, res, next) => {
 	const sauceObject = req.body;
 	const userId = sauceObject.userId;
 	const like = sauceObject.like;
+	console.log("----");
+	console.log(req.body);
 
 	Sauce.findOne({ _id: req.params.id }) // Utilisation de la méthode findOne() pour trouver la Sauce unique ayant le même _id que le paramètre de la requête
 		.then((sauce) => {
@@ -82,14 +84,20 @@ exports.modifySauce = (req, res, next) => {
 		: { ...req.body };
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
-			// vérification que sa soit bien l'utilisateur qui a creer la sauce
-			if (sauce.userId === req.userIdAuth) {
+			// vérification que ca soit bien l'utilisateur qui a creer la sauce
+			console.log(req.body);
+			if (sauce.userId == req.user) {
+				// La sauce appartient à user en cours ?
+				//	if (sauce.userId === req.body.userIdAuth) {
 				const filename = sauce.imageUrl.split("/images/")[1];
 				fs.unlink(`images/${filename}`, () => {
 					Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
 						.then(() => res.status(200).json({ message: "Objet modifié !" }))
 						.catch((error) => res.status(400).json({ error }));
 				});
+				//	}
+			} else {
+				throw "Impossible de supprimer la sauce. Elle n'appartient pas à l'utilisateur en cours";
 			}
 		})
 		.catch((error) => res.status(500).json({ error }));

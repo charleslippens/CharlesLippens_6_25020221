@@ -38,7 +38,7 @@ exports.signup = (req, res, next) => {
 				const user = new User({
 					// email: req.body.email,
 					email: cryptoJs
-						.HmacSHA512(req.body.email, process.env.JWT_RAND_SECRET)
+						.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
 						.toString(),
 					password: hash,
 				});
@@ -57,7 +57,7 @@ exports.login = (req, res, next) => {
 	//User.findOne({ email: req.body.email })
 	// on vérifie que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données
 	User.findOne({
-		email: cryptoJs.HmacSHA512(req.body.email, process.env.JWT_RAND_SECRET).toString(),
+		email: cryptoJs.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET).toString(),
 	})
 		.then((user) => {
 			if (!user) {
