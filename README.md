@@ -16,9 +16,8 @@ Vous devrez avoir Node-sass installé à part.
 ⇢ Installation :
 
 ▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ;
-(npm i --save-dev node-sass@4.14.1 puis npm run start)
 
-▹ A partir du dossier frontend, exécutez npm install puis ng serve;
+▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start et  ng serve;
 
 ▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données ;
 
