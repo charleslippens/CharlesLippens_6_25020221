@@ -6,6 +6,7 @@ const cryptoJs = require("crypto-js");
 const jwt = require("jsonwebtoken");
 // Permet d'importer le package password-validator
 const passwordValidator = require("password-validator");
+const MaskData = require("maskdata");
 // Permet d'importer le modèle de données pour un utilisateur
 const User = require("../models/User");
 
@@ -31,17 +32,25 @@ schemaPassword
 
 // Création d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
+	//	const emailCryptoJs = cryptoJs
+	//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
+	//		.toString();
+	//	console.log(emailCryptoJs);
 	if (schemaPassword.validate(req.body.password)) {
 		bcrypt
 			.hash(req.body.password, 10)
 			.then((hash) => {
+				const maskedEmail = MaskData.maskEmail2(req.body.email);
 				const user = new User({
 					// email: req.body.email,
-					email: cryptoJs
-						.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
-						.toString(),
+					//	email: cryptoJs
+					//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
+					//		.toString(),
+					//	email: emailCryptoJs,
+					email: maskedEmail,
 					password: hash,
 				});
+				//	console.log(emailCryptoJs);
 				user.save()
 					.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
 					.catch((error) => res.status(400).json({ error }));
@@ -53,15 +62,32 @@ exports.signup = (req, res, next) => {
 };
 
 // Permet à un utilisateur de se connecter
+//exports.login = (req, res, next) => {
+//	User.findOne({ email: req.body.email });
+//on vérifie que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données
+//	User.findOne({
+//		email: cryptoJs.HmacSHA256(req.body.email, process.env.EMAIL_RAND_SECRET).toString(),
+//	})
+
+//		.then((user) => {
+//			if (!user) {
+//				return res.status(401).json({ error: "Utilisateur non trouvé !" });
+//			}
+
+//LOGIN pour controler la validité de l'utilisateur
 exports.login = (req, res, next) => {
-	//User.findOne({ email: req.body.email })
-	// on vérifie que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données
-	User.findOne({
-		email: cryptoJs.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET).toString(),
-	})
+	const maskedEmail = MaskData.maskEmail2(req.body.email);
+	User.findOne({ email: maskedEmail })
+		//const emailCryptoJs = cryptoJs
+		//	.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
+		//	.toString();
+		//console.log(emailCryptoJs);
+		//chercher le mail de l'utilisateur chiffré dans la base de donnée s'il existe
+		//User.findOne({ email: emailCryptoJs })
 		.then((user) => {
+			//	console.log(emailCryptoJs);
 			if (!user) {
-				return res.status(401).json({ error: "Utilisateur non trouvé !" });
+				return res.status(401).json({ error: "utilisateur inexistant" });
 			}
 			bcrypt
 				// on utilise la fonction compare de bcrypt pour comparer le mot de passe entré par l'utilisateur avec le hash enregistré dans la base de données

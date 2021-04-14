@@ -8,6 +8,8 @@ const auth = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 // Permet d'importer le controller sauce
 const sauceCtrl = require("../controllers/sauce");
+// Permet de vérifier si l'utilisateur est le propritétaire d'une sauce
+const owner = require("../middleware/owner");
 
 //route get pour afficher toutes les sauces
 router.get("/", auth, sauceCtrl.getAllSauce);
@@ -19,13 +21,13 @@ router.post("/", auth, multer, sauceCtrl.createSauce);
 router.get("/:id", auth, sauceCtrl.getOneSauce);
 
 //route put pour modifier une sauce
-router.put("/:id", auth, multer, sauceCtrl.modifySauce);
+router.put("/:id", auth, owner, multer, sauceCtrl.modifySauce);
 
 //route post pour liker une sauce
 router.post("/:id/like", auth, sauceCtrl.likeSauce);
 
 //route delete pour supprimer une sauce
-router.delete("/:id", auth, sauceCtrl.deleteSauce);
+router.delete("/:id", auth, owner, multer, sauceCtrl.deleteSauce);
 
 // Permet d'exporter le router
 module.exports = router;

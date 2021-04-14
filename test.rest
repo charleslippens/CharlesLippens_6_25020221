@@ -14,17 +14,17 @@ Content-Type: application/json
     "password":"lF4wC8sL1jK9sA0d@"
 }
 ###
-GET http://localhost:3000/api/sauces/605a651f0c3cdaf244fe9ab9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDVhNjU1YjBjM2NkYWYyNDRmZTlhYmEiLCJpYXQiOjE2MTY1Mzc0MzAsImV4cCI6MTYxNjYyMzgzMH0.5BMoFfgO0Zk53AMv2Iu9KVMEzHQZLg-kLY1MUwR_hVI
+GET http://localhost:3000/api/sauces/606d99b5b1ed9f218d702e78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDZkODI2ZjNiZDYyMDIyMDkwMDAzYWQiLCJpYXQiOjE2MTc3OTY0OTIsImV4cCI6MTYxNzg4Mjg5Mn0.p8sqiNXZXkUzvov8nbx6t-PPVsjw7zByjt6vGX7K3sE
 ###
 
-PUT http://localhost:3000/api/sauces/606d82903bd62022090003ae
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDZkODJiODNiZDYyMDIyMDkwMDAzYWYiLCJpYXQiOjE2MTc3OTIyMDIsImV4cCI6MTYxNzg3ODYwMn0.OAbAHznSk6MCsGFNpg_GDoHey9T2jBtLTPmNvqMqUr4
+PUT http://localhost:3000/api/sauces/606d99b5b1ed9f218d702e78
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDZkODI2ZjNiZDYyMDIyMDkwMDAzYWQiLCJpYXQiOjE2MTc3OTY0OTIsImV4cCI6MTYxNzg4Mjg5Mn0.p8sqiNXZXkUzvov8nbx6t-PPVsjw7zByjt6vGX7K3sE
 Content-Type: application/json
 
 {
-    "manufacturer": "testy",
-    "userId": "606d82b83bd62022090003af"
+    "manufacturer": "testyy",
+    "userId": "606d826f3bd62022090003ad"
 }
 ###
 

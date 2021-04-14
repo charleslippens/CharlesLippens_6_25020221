@@ -75,33 +75,69 @@ exports.likeSauce = (req, res, next) => {
 };
 
 //permet de modifier une sauce
+//permet de modifier une sauce si on en est le propriétaire grâce à owner.js
+
 exports.modifySauce = (req, res, next) => {
-	const sauceObject = req.file
-		? {
-				...JSON.parse(req.body.sauce),
-				imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-		  }
-		: { ...req.body };
-	Sauce.findOne({ _id: req.params.id })
-		.then((sauce) => {
-			// vérification que ca soit bien l'utilisateur qui a creer la sauce
-			console.log(req.body);
-			if (sauce.userId == req.user) {
-				// La sauce appartient à user en cours ?
-				//	if (sauce.userId === req.body.userIdAuth) {
+	// vérifie si l'on modifie l'image
+	if (req.file) {
+		Sauce.findOne({ _id: req.params.id })
+			.then((sauce) => {
 				const filename = sauce.imageUrl.split("/images/")[1];
+				// supprime l'image de la sauce
 				fs.unlink(`images/${filename}`, () => {
+					const sauceObject = {
+						...JSON.parse(req.body.sauce),
+						imageUrl: `${req.protocol}://${req.get("host")}/images/${
+							req.file.filename
+						}`,
+					};
+					// renvoie l'objet Sauce avec la nouvelle image
 					Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-						.then(() => res.status(200).json({ message: "Objet modifié !" }))
+						.then(() =>
+							res.status(200).json({ message: "La sauce a bien été modifiée !" })
+						)
 						.catch((error) => res.status(400).json({ error }));
 				});
-				//	}
-			} else {
-				throw "Impossible de supprimer la sauce. Elle n'appartient pas à l'utilisateur en cours";
-			}
-		})
-		.catch((error) => res.status(500).json({ error }));
+			})
+			.catch((error) => res.status(500).json({ error }));
+	}
+	// si la modification ne concerne pas l'image
+	else {
+		const sauceObject = { ...req.body };
+		Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+			.then(() => res.status(200).json({ message: "La sauce a bien été modifiée !" }))
+			.catch((error) => res.status(400).json({ error }));
+	}
 };
+
+// exports.modifySauce = (req, res, next) => {
+// 	const sauceObject = req.file
+// 		? {
+// 				...JSON.parse(req.body.sauce),
+// 				imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+// 		  }
+// 		: { ...req.body };
+
+// 	Sauce.findOne({ _id: req.params.id })
+// 		.then((sauce) => {
+// 			// vérification que ca soit bien l'utilisateur qui a creer la sauce
+// 			console.log(req.body);
+// 			if (sauce.userId == req.user) {
+// 				// La sauce appartient à user en cours ?
+// 				//	if (sauce.userId === req.body.userIdAuth) {
+// 				const filename = sauce.imageUrl.split("/images/")[1];
+// 				fs.unlink(`images/${filename}`, () => {
+// 					Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+// 						.then(() => res.status(200).json({ message: "Objet modifié !" }))
+// 						.catch((error) => res.status(400).json({ error }));
+// 				});
+// 				//	}
+// 			} else {
+// 				throw "Impossible de supprimer la sauce. Elle n'appartient pas à l'utilisateur en cours";
+// 			}
+// 		})
+// 		.catch((error) => res.status(500).json({ error }));
+// };
 
 //permet de supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
