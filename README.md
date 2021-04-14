@@ -11,7 +11,7 @@ Développer une API sécurisée pour une application d'avis gastronomiquesévalu
 
 ⇢ Prérequis :
 
-Vous devrez avoir Node-sass installé à part.
+Vous devrez avoir Node.js installé à part.
 
 ⇢ Installation :
 
