@@ -2,6 +2,7 @@
 const bcrypt = require("bcrypt");
 // Permet d'importer le package crypto-js
 const cryptoJs = require("crypto-js");
+const crypto = require("crypto");
 // Permet de créer des tokens et de les vérifier
 const jwt = require("jsonwebtoken");
 // Permet d'importer le package password-validator
@@ -32,6 +33,16 @@ schemaPassword
 
 // Création d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
+	const emailCrypto = crypto
+		.createCipher("aes-256-ctr", process.env.EMAIL_SECRET)
+		.update(req.body.email, "utf-8", "hex");
+	console.log(emailCrypto);
+	const emailDecrypto = crypto
+		.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET)
+		.update(emailCrypto, "hex", "utf-8");
+	console.log(emailDecrypto);
+	console.log(hex2a(emailDecrypto.toString()));
+
 	//	const emailCryptoJs = cryptoJs
 	//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
 	//		.toString();
@@ -40,14 +51,14 @@ exports.signup = (req, res, next) => {
 		bcrypt
 			.hash(req.body.password, 10)
 			.then((hash) => {
-				const maskedEmail = MaskData.maskEmail2(req.body.email);
+				//	const maskedEmail = MaskData.maskEmail2(req.body.email);
 				const user = new User({
 					// email: req.body.email,
 					//	email: cryptoJs
 					//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
 					//		.toString(),
-					//	email: emailCryptoJs,
-					email: maskedEmail,
+					email: emailCrypto,
+					//	email: maskedEmail,
 					password: hash,
 				});
 				//	console.log(emailCryptoJs);
@@ -76,16 +87,26 @@ exports.signup = (req, res, next) => {
 
 //LOGIN pour controler la validité de l'utilisateur
 exports.login = (req, res, next) => {
-	const maskedEmail = MaskData.maskEmail2(req.body.email);
-	User.findOne({ email: maskedEmail })
-		//const emailCryptoJs = cryptoJs
-		//	.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
-		//	.toString();
-		//console.log(emailCryptoJs);
-		//chercher le mail de l'utilisateur chiffré dans la base de donnée s'il existe
-		//User.findOne({ email: emailCryptoJs })
+	const emailCrypto = crypto
+		.createCipher("aes-256-ctr", process.env.EMAIL_SECRET)
+		.update(req.body.email, "utf-8", "hex");
+	console.log(emailCrypto);
+	//	.toString();
+	//	const maskedEmail = MaskData.maskEmail2(req.body.email);
+	//	User.findOne({ email: maskedEmail })
+	//const emailCryptoJs = cryptoJs
+	//	.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
+	//	.toString();
+	//console.log(emailCryptoJs);
+	//chercher le mail de l'utilisateur chiffré dans la base de donnée s'il existe
+	User.findOne({ email: emailCrypto })
 		.then((user) => {
 			//	console.log(emailCryptoJs);
+			const emailDecrypto = crypto
+				.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET)
+				.update(emailCrypto, "utf-8", "hex");
+			console.log(emailDecrypto);
+			console.log(hex2a(emailDecrypto.toString()));
 			if (!user) {
 				return res.status(401).json({ error: "utilisateur inexistant" });
 			}
@@ -112,3 +133,10 @@ exports.login = (req, res, next) => {
 		})
 		.catch((error) => res.status(500).json({ error }));
 };
+
+function hex2a(hex) {
+	var str = "";
+	for (var i = 0; i < hex.length; i += 2)
+		str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+	return str;
+}

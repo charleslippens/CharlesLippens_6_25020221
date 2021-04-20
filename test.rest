@@ -10,8 +10,8 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"testsauce6@gmail.com",
-    "password":"lF4wC8sL1jK9sA0d@"
+    "email":"testsauce10@gmail.com",
+    "password":"tE8cK4gH7bB3jX3j@"
 }
 ###
 GET http://localhost:3000/api/sauces/606d99b5b1ed9f218d702e78
