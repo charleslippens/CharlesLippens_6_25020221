@@ -41,6 +41,6 @@ JWT_RAND_SECRET: choisir une clé aléatoire
 
 ▹ Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
 
-L'url du site est http://localhost:4200/login
+Le lien du site local est http://localhost:4200/login
 
 
