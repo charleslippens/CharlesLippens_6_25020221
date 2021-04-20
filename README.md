@@ -11,7 +11,7 @@ Développer une API sécurisée pour une application d'avis gastronomiquesévalu
 
 ⇢ Prérequis :
 
-Vous devrez avoir Node-sass installé à part.
+Vous devrez avoir Node.js installé à part.
 
 ⇢ Installation :
 
@@ -21,7 +21,17 @@ Vous devrez avoir Node-sass installé à part.
 
 ▹ Clonez ce repository ;
 
-▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données ;
+▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données :
+
+DB_CONNECT: mongodb+srv://<username>:<password>@<cluster_number>.<cluster_name>.mongodb.net/<databasename>?retryWrites=true&w=majority
+  
+Par exemple : mongodb+srv://<username>:<password>@cluster0.xvfqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+EMAIL_SECRET: choisir une clé aléatoire
+
+JWT_RAND_SECRET: choisir une clé aléatoire
+
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server;
 
