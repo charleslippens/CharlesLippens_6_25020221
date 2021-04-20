@@ -39,4 +39,8 @@ JWT_RAND_SECRET: choisir une clé aléatoire
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server;
 
-▹ Le serveur doit fonctionner sur localhost avec le port par défaut 4200.
+▹ Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
+
+L'url du site est http://localhost:4200/login
+
+
