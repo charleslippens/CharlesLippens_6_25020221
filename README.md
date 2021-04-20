@@ -1,6 +1,8 @@
 ⇢ Présentation :
 
-Développer une API sécurisée pour une application d'avis gastronomiquesévaluation de sauces piquantes.
+Développer une API sécurisée pour une application d'avis gastronomiques et d'évaluation de sauces piquantes.
+
+L'objectif était de réaliser la partie backend puisque le frontend était déja fourni.
 
 ⇢ Technologies utilisées :
 
@@ -11,7 +13,9 @@ Développer une API sécurisée pour une application d'avis gastronomiquesévalu
 
 ⇢ Prérequis :
 
-Vous devrez avoir Node.js installé à part.
+La partie frontend a été générée avec Angular CLI version 7.0.2. La partie backend a été générée avec Node.js
+
+Pour faire fonctionner le projet, vous devez installer Node.js
 
 ⇢ Installation :
 
