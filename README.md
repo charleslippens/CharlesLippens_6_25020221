@@ -19,9 +19,14 @@ Pour faire fonctionner le projet, vous devez installer Node.js
 
 ⇢ Installation :
 
-▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ;
+Fronted:
+
+▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6
 
 ▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start et  ng serve;
+
+
+Backend
 
 ▹ Clonez ce repository ;
 
