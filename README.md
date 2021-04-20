@@ -1,4 +1,4 @@
-⇢ Présentation :
+⇢ Présentation :  Construire une API sécurisée pour une application d'avis gastronomiques
 
 Développer une API sécurisée pour une application d'avis gastronomiques et d'évaluation de sauces piquantes.
 
