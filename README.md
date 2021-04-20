@@ -19,16 +19,22 @@ Pour faire fonctionner le projet, vous devez installer Node.js
 
 ⇢ Installation :
 
+▹ Creéz un dossier SoPekocko.
+
 Fronted:
 
-▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6
+▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ou téléchargez le zip sur le lien.
+
+▹ Créez un dossier frontend à l'intérieur du dossier SoPekocko et dézippez dwj-projet6 dedans.
 
 ▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start et  ng serve;
 
 
 Backend
 
-▹ Clonez ce repository ;
+▹ Clonez ce repository ou téléchargez le zip directement.
+
+▹ Placez le backend à l'intérieur du dossier SoPekocko et dézippez le dedans.
 
 ▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données :
 
