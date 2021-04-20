@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "express-mongo-sanitize": "^2.0.2",
-    "helmet": "^4.4.1",
-    "password-validator": "^5.1.1"
-  }
-}
