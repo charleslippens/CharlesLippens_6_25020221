@@ -60,4 +60,6 @@ Le serveur doit fonctionner sur localhost avec le port par défaut 4200.
 
 Le lien du site local est http://localhost:4200/login
 
+Lors de l'inscription d'un nouvel utilisateur, le mot de passe doit contenir entre 8 et 20 caractères dont au moins une lettre majuscule, une lettre minusucle, deux chiffres et un symbole
+
 
