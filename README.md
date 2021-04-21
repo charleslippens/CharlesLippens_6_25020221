@@ -1,30 +1,33 @@
-#So Pekocko
+## So Pekocko
 
-#⇢ Présentation :  
+### ⇢ Présentation :  
 
 
 Construire une API sécurisée pour une application d'avis gastronomiques et d'évaluation de sauces piquantes.
 
 L'objectif était de réaliser la partie backend puisque le frontend était déja fourni.
 
-#⇢ Technologies utilisées :
+### ⇢ Technologies utilisées :
 
 ▹ JavaScript
+
 ▹ Node.js
+
 ▹ Express.js
+
 ▹ MongoDB
 
-#⇢ Prérequis :
+### ⇢ Prérequis :
 
 La partie frontend a été générée avec Angular CLI version 7.0.2. La partie backend a été générée avec Node.js
 
 Pour faire fonctionner le projet, vous devez installer Node.js
 
-#⇢ Installation :
+### ⇢ Installation :
 
 ▹ Creéz un dossier SoPekocko.
 
-#Fronted:
+### Fronted:
 
 ▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ou téléchargez le zip sur le lien précédent.
 
@@ -33,7 +36,7 @@ Pour faire fonctionner le projet, vous devez installer Node.js
 ▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start (ng serve); Le port utilisé est 4200
 
 
-#Backend
+### Backend
 
 ▹ Clonez le repository sur cette page ou téléchargez le zip directement.
 
@@ -47,14 +50,16 @@ Par exemple : mongodb+srv://test:test@cluster0.xvfqr.mongodb.net/myFirstDatabase
 
 EMAIL_SECRET: écrire une clé aléatoire (32 caractères)
 
-JWT_RAND_SECRET: écrire une clé aléatoire de type https://jwt.io/
-
+JWT_RAND_SECRET: écrire une clé aléatoire, token de type https://jwt.io/
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server; Le port utilisé est 3000.
 
+### Test du site en local
 
 Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
 
 Le lien du site local est http://localhost:4200/login
+
+Lors de l'inscription d'un nouvel utilisateur, le mot de passe doit contenir entre 8 et 20 caractères dont au moins une lettre majuscule, une lettre minusucle, deux chiffres et un symbole
 
 
