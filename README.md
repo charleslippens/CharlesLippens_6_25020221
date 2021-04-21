@@ -10,8 +10,11 @@ L'objectif était de réaliser la partie backend puisque le frontend était déj
 ### ⇢ Technologies utilisées :
 
 ▹ JavaScript
+
 ▹ Node.js
+
 ▹ Express.js
+
 ▹ MongoDB
 
 ### ⇢ Prérequis :
