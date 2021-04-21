@@ -1,56 +1,59 @@
-⇢ Présentation :  Construire une API sécurisée pour une application d'avis gastronomiques
+#So Pekocko
 
-Développer une API sécurisée pour une application d'avis gastronomiques et d'évaluation de sauces piquantes.
+#⇢ Présentation :  
+
+
+Construire une API sécurisée pour une application d'avis gastronomiques et d'évaluation de sauces piquantes.
 
 L'objectif était de réaliser la partie backend puisque le frontend était déja fourni.
 
-⇢ Technologies utilisées :
+#⇢ Technologies utilisées :
 
 ▹ JavaScript
 ▹ Node.js
 ▹ Express.js
 ▹ MongoDB
 
-⇢ Prérequis :
+#⇢ Prérequis :
 
 La partie frontend a été générée avec Angular CLI version 7.0.2. La partie backend a été générée avec Node.js
 
 Pour faire fonctionner le projet, vous devez installer Node.js
 
-⇢ Installation :
+#⇢ Installation :
 
 ▹ Creéz un dossier SoPekocko.
 
-Fronted:
+#Fronted:
 
-▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ou téléchargez le zip sur le lien.
+▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ou téléchargez le zip sur le lien précédent.
 
-▹ Créez un dossier frontend à l'intérieur du dossier SoPekocko et dézippez le contenu de dwj-projet6 dedans.
+▹ Dézippez le contenu de "dwj-projet6-master" et placez le dans un dossier frontend préalablement créé à l'intérieur du dossier SoPekocko .
 
-▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start et  ng serve;
+▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start (ng serve); Le port utilisé est 4200
 
 
-Backend
+#Backend
 
-▹ Clonez ce repository ou téléchargez le zip directement.
+▹ Clonez le repository sur cette page ou téléchargez le zip directement.
 
-▹ Placez le backend à l'intérieur du dossier SoPekocko et dézippez le dedans.
+▹ Dézippez le contenu placez le backend à l'intérieur du dossier SoPekocko.
 
-▹ Copiez le fichier .env en remplaçant les valeurs par défaut pour accéder à la base de données :
+▹ Editez le fichier .env  situé dans backend en remplaçant les valeurs par défaut pour accéder à la base de données :
 
 DB_CONNECT: mongodb+srv://<username>:<password>@<cluster_number>.<cluster_name>.mongodb.net/<databasename>?retryWrites=true&w=majority
   
-Par exemple : mongodb+srv://<username>:<password>@cluster0.xvfqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+Par exemple : mongodb+srv://test:test@cluster0.xvfqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+EMAIL_SECRET: écrire une clé aléatoire (32 caractères)
+
+JWT_RAND_SECRET: écrire une clé aléatoire de type https://jwt.io/
 
 
-EMAIL_SECRET: choisir une clé aléatoire (22 caractères)
-
-JWT_RAND_SECRET: choisir une clé aléatoire 
+▹ A partir du dossier backend, exécutez npm install puis nodemon server; Le port utilisé est 3000.
 
 
-▹ A partir du dossier backend, exécutez npm install puis nodemon server;
-
-▹ Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
+Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
 
 Le lien du site local est http://localhost:4200/login
 
