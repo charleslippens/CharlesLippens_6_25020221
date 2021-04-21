@@ -33,7 +33,7 @@ Pour faire fonctionner le projet, vous devez installer Node.js
 ▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start (ng serve); Le port utilisé est 4200
 
 
-#Backend
+### Backend
 
 ▹ Clonez le repository sur cette page ou téléchargez le zip directement.
 
@@ -47,11 +47,11 @@ Par exemple : mongodb+srv://test:test@cluster0.xvfqr.mongodb.net/myFirstDatabase
 
 EMAIL_SECRET: écrire une clé aléatoire (32 caractères)
 
-JWT_RAND_SECRET: écrire une clé aléatoire de type https://jwt.io/
-
+JWT_RAND_SECRET: écrire une clé aléatoire, token de type https://jwt.io/
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server; Le port utilisé est 3000.
 
+### Test du site en local
 
 Le serveur doit fonctionner sur localhost avec le port par défaut 4200. 
 
