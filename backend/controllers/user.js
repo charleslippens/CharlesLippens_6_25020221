@@ -10,10 +10,11 @@ const passwordValidator = require("password-validator");
 const MaskData = require("maskdata");
 // Permet d'importer le modèle de données pour un utilisateur
 const User = require("../models/User");
+// Vecteur d'initialisation du cryptage
+const iv = crypto.randomBytes(16);
 
 // permet de créer un schéma de validation de mot de passe
 const schemaPassword = new passwordValidator();
-
 schemaPassword
 	.is()
 	.min(8)
@@ -33,35 +34,25 @@ schemaPassword
 
 // Création d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
-	const emailCrypto = crypto
-		.createCipher("aes-256-ctr", process.env.EMAIL_SECRET)
-		.update(req.body.email, "utf-8", "hex");
-	console.log(emailCrypto);
-	const emailDecrypto = crypto
-		.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET)
-		.update(emailCrypto, "hex", "utf-8");
-	console.log(emailDecrypto);
-	console.log(hex2a(emailDecrypto.toString()));
-
-	//	const emailCryptoJs = cryptoJs
-	//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
-	//		.toString();
-	//	console.log(emailCryptoJs);
+	// Cryptage de l'email (réversible)
+	let emailCipher = crypto.createCipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+	let emailCrypted = emailCipher.update(req.body.email,"utf-8","hex");
+	emailCrypted += emailCipher.final();
+	console.log(emailCrypted.toString('hex'));
+	// test de décryptage
+		//const emailDecipher = crypto.createDecipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+		//let emailDecrypted = emailDecipher.update(emailCrypted,"hex" "utf-8");
+		//emailDecrypted += emailDecipher.final();
+		//console.log(emailDecrypted);
+	// Cryptage du mot de passe (irréversible)
 	if (schemaPassword.validate(req.body.password)) {
 		bcrypt
 			.hash(req.body.password, 10)
 			.then((hash) => {
-				//	const maskedEmail = MaskData.maskEmail2(req.body.email);
 				const user = new User({
-					// email: req.body.email,
-					//	email: cryptoJs
-					//		.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
-					//		.toString(),
-					email: emailCrypto,
-					//	email: maskedEmail,
+					email: emailCrypted,
 					password: hash,
 				});
-				//	console.log(emailCryptoJs);
 				user.save()
 					.then(() => res.status(201).json({ message: "Utilisateur créé !" }))
 					.catch((error) => res.status(400).json({ error }));
@@ -72,46 +63,22 @@ exports.signup = (req, res, next) => {
 	}
 };
 
-// Permet à un utilisateur de se connecter
-//exports.login = (req, res, next) => {
-//	User.findOne({ email: req.body.email });
-//on vérifie que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données
-//	User.findOne({
-//		email: cryptoJs.HmacSHA256(req.body.email, process.env.EMAIL_RAND_SECRET).toString(),
-//	})
-
-//		.then((user) => {
-//			if (!user) {
-//				return res.status(401).json({ error: "Utilisateur non trouvé !" });
-//			}
-
 //LOGIN pour controler la validité de l'utilisateur
 exports.login = (req, res, next) => {
-	const emailCrypto = crypto
-		.createCipher("aes-256-ctr", process.env.EMAIL_SECRET)
-		.update(req.body.email, "utf-8", "hex");
-	console.log(emailCrypto);
-	//	.toString();
-	//	const maskedEmail = MaskData.maskEmail2(req.body.email);
-	//	User.findOne({ email: maskedEmail })
-	//const emailCryptoJs = cryptoJs
-	//	.HmacSHA512(req.body.email, process.env.EMAIL_RAND_SECRET)
-	//	.toString();
-	//console.log(emailCryptoJs);
-	//chercher le mail de l'utilisateur chiffré dans la base de donnée s'il existe
-	User.findOne({ email: emailCrypto })
+	// Cryptage de l'email (réversible)
+	let emailCipher = crypto.createCipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+	let emailCrypted = emailCipher.update(req.body.email, "utf-8", "hex");
+	emailCrypted += emailCipher.final();
+	console.log(emailCrypted.toString('hex'));
+	// Reherche de l'email de l'utilisateur chiffré dans la base de donnée
+	User.findOne({ email: emailCrypted })
 		.then((user) => {
-			//	console.log(emailCryptoJs);
-			const emailDecrypto = crypto
-				.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET)
-				.update(emailCrypto, "utf-8", "hex");
-			console.log(emailDecrypto);
-			console.log(hex2a(emailDecrypto.toString()));
+			// console.log(emailCrypted.toString('hex'));
 			if (!user) {
 				return res.status(401).json({ error: "utilisateur inexistant" });
 			}
 			bcrypt
-				// on utilise la fonction compare de bcrypt pour comparer le mot de passe entré par l'utilisateur avec le hash enregistré dans la base de données
+				// Comparaison du mot de passe entré par l'utilisateur avec le hash enregistré dans la BD
 				.compare(req.body.password, user.password)
 				.then((valid) => {
 					if (!valid) {
@@ -133,10 +100,3 @@ exports.login = (req, res, next) => {
 		})
 		.catch((error) => res.status(500).json({ error }));
 };
-
-function hex2a(hex) {
-	var str = "";
-	for (var i = 0; i < hex.length; i += 2)
-		str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-	return str;
-}

@@ -1,6 +1,6 @@
 // Permet d'importer mongoose
 const mongoose = require("mongoose");
-// Ajoute le plugin validateur au modèle de données et permet de ne pas avoir plusieurs utilisateurs avec la même adresse mail
+// Ajoute le plugin validateur au modèle de données (1 seul email par utilisateur)
 const uniqueValidator = require("mongoose-unique-validator");
 
 // Modèle de données pour un utilisateur

@@ -14,6 +14,7 @@ const sauceRoutes = require("./routes/sauce");
 const userRoutes = require("./routes/user");
 // Permet d'accéder au chemin du système de fichiers
 const path = require("path");
+// Permet de lire les variables locales d'environnement dans .env
 require("dotenv").config();
 
 // pour connecter l'API à la base de données MongoDB

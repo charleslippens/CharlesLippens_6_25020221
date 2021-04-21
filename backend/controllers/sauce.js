@@ -3,7 +3,7 @@ const Sauce = require("../models/Sauce");
 // permet d'importer le package file system
 const fs = require("fs");
 
-//permet de créer une nouvelle sauce
+// permet de créer une nouvelle sauce
 exports.createSauce = (req, res, next) => {
 	const sauceObject = JSON.parse(req.body.sauce);
 	delete sauceObject._id;
@@ -74,9 +74,7 @@ exports.likeSauce = (req, res, next) => {
 		.catch((error) => res.status(400).json({ error }));
 };
 
-//permet de modifier une sauce
 //permet de modifier une sauce si on en est le propriétaire grâce à owner.js
-
 exports.modifySauce = (req, res, next) => {
 	// vérifie si l'on modifie l'image
 	if (req.file) {
@@ -110,40 +108,11 @@ exports.modifySauce = (req, res, next) => {
 	}
 };
 
-// exports.modifySauce = (req, res, next) => {
-// 	const sauceObject = req.file
-// 		? {
-// 				...JSON.parse(req.body.sauce),
-// 				imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-// 		  }
-// 		: { ...req.body };
-
-// 	Sauce.findOne({ _id: req.params.id })
-// 		.then((sauce) => {
-// 			// vérification que ca soit bien l'utilisateur qui a creer la sauce
-// 			console.log(req.body);
-// 			if (sauce.userId == req.user) {
-// 				// La sauce appartient à user en cours ?
-// 				//	if (sauce.userId === req.body.userIdAuth) {
-// 				const filename = sauce.imageUrl.split("/images/")[1];
-// 				fs.unlink(`images/${filename}`, () => {
-// 					Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-// 						.then(() => res.status(200).json({ message: "Objet modifié !" }))
-// 						.catch((error) => res.status(400).json({ error }));
-// 				});
-// 				//	}
-// 			} else {
-// 				throw "Impossible de supprimer la sauce. Elle n'appartient pas à l'utilisateur en cours";
-// 			}
-// 		})
-// 		.catch((error) => res.status(500).json({ error }));
-// };
-
-//permet de supprimer une sauce
+// permet de supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
 	Sauce.findOne({ _id: req.params.id })
 		.then((sauce) => {
-			// vérification que sa soit bien l'utilisateur qui a creer la sauce
+			// vérification que c'est bien l'utilisateur qui a créé la sauce
 			//if (sauce.userId === req.userIdAuth) {
 			const filename = sauce.imageUrl.split("/images/")[1];
 			fs.unlink(`images/${filename}`, () => {

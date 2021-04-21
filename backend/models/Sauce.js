@@ -1,5 +1,4 @@
 // Permet d'importer mongoose
-
 const mongoose = require("mongoose");
 
 // Modèle de données pour une sauce
