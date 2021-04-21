@@ -25,7 +25,7 @@ Fronted:
 
 ▹ Clonez le frontend du projet https://github.com/OpenClassrooms-Student-Center/dwj-projet6 ou téléchargez le zip sur le lien.
 
-▹ Créez un dossier frontend à l'intérieur du dossier SoPekocko et dézippez dwj-projet6 dedans.
+▹ Créez un dossier frontend à l'intérieur du dossier SoPekocko et dézippez le contenu de dwj-projet6 dedans.
 
 ▹ A partir du dossier frontend, exécutez npm i --save-dev node-sass@4.14.1 puis npm run start et  ng serve;
 
@@ -43,9 +43,9 @@ DB_CONNECT: mongodb+srv://<username>:<password>@<cluster_number>.<cluster_name>.
 Par exemple : mongodb+srv://<username>:<password>@cluster0.xvfqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 
-EMAIL_SECRET: choisir une clé aléatoire
+EMAIL_SECRET: choisir une clé aléatoire (22 caractères)
 
-JWT_RAND_SECRET: choisir une clé aléatoire
+JWT_RAND_SECRET: choisir une clé aléatoire 
 
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server;
