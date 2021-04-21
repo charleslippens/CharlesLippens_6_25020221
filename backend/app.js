@@ -19,11 +19,7 @@ require("dotenv").config();
 
 // pour connecter l'API à la base de données MongoDB
 mongoose
-	.connect(
-		//"mongodb+srv://sdfsdfsd12:sdfsdfsd12@cluster0.xvfqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-		process.env.DB_CONNECT,
-		{ useNewUrlParser: true, useUnifiedTopology: true }
-	)
+	.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() => console.log("Connexion à MongoDB réussie !"))
 	.catch(() => console.log("Connexion à MongoDB échouée !"));
 
