@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 const passwordValidator = require("password-validator");
 // Permet d'importer le modèle de données pour un utilisateur
 const User = require("../models/User");
+// Vecteur d'initialisation du cryptage
+const iv = Buffer.alloc(16);
 
 // permet de créer un schéma de validation de mot de passe
 const schemaPassword = new passwordValidator();
@@ -28,18 +30,18 @@ schemaPassword
 	.not()
 	.spaces();
 
-// Création d'un nouvel utilisateur
+// signup: enregistrement d'un nouvel utilisateur
 exports.signup = (req, res, next) => {
-	// Cryptage de l'email (réversible)
-	let emailCipher = crypto.createCipher("aes-256-ctr", process.env.EMAIL_SECRET);
-	let emailCrypted = emailCipher.update(req.body.email, "utf-8", "hex");
+	// Cryptage de l'adresse mail (réversible)
+	let emailCipher = crypto.createCipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+	let emailCrypted = emailCipher.update(req.body.email,"utf-8","hex");
 	console.log("inscriptionCrypt:");
-	console.log(emailCrypted.toString("hex"));
+	console.log(emailCrypted.toString('hex'));
 	// test de décryptage
-	const emailDecipher = crypto.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET);
-	let emailDecrypted = emailDecipher.update(emailCrypted, "hex", "utf-8");
-	console.log("inscriptionDecrypt:");
-	console.log(emailDecrypted);
+		const emailDecipher = crypto.createDecipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+		let emailDecrypted = emailDecipher.update(emailCrypted,"hex", "utf-8");
+		console.log("inscriptionDecrypt:");
+		console.log(emailDecrypted);
 	// Cryptage du mot de passe (irréversible)
 	if (schemaPassword.validate(req.body.password)) {
 		bcrypt
@@ -59,18 +61,18 @@ exports.signup = (req, res, next) => {
 	}
 };
 
-//LOGIN pour controler la validité de l'utilisateur
+// login: connexion d'un utilisateur et envoi d'un token
 exports.login = (req, res, next) => {
 	// Cryptage de l'email (réversible)
-	let emailCipher = crypto.createCipher("aes-256-ctr", process.env.EMAIL_SECRET);
+	let emailCipher = crypto.createCipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
 	let emailCrypted = emailCipher.update(req.body.email, "utf-8", "hex");
 	console.log("loginCrypt:");
-	console.log(emailCrypted.toString("hex"));
-	// test de décryptage
-	const emailDecipher = crypto.createDecipher("aes-256-ctr", process.env.EMAIL_SECRET);
-	let emailDecrypted = emailDecipher.update(emailCrypted, "hex", "utf-8");
-	console.log("loginDecrypt:");
-	console.log(emailDecrypted);
+	console.log(emailCrypted.toString('hex'));
+		// test de décryptage
+		const emailDecipher = crypto.createDecipheriv("aes-256-ctr", process.env.EMAIL_SECRET,iv);
+		let emailDecrypted = emailDecipher.update(emailCrypted,"hex", "utf-8");
+		console.log("loginDecrypt:");
+		console.log(emailDecrypted);
 	// Recherche de l'email de l'utilisateur chiffré dans la base de donnée
 	User.findOne({ email: emailCrypted })
 		.then((user) => {
