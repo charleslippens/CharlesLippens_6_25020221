@@ -50,7 +50,7 @@ Par exemple : mongodb+srv://test:test@cluster0.xvfqr.mongodb.net/myFirstDatabase
 
 EMAIL_SECRET: écrire une clé aléatoire (32 caractères)
 
-JWT_RAND_SECRET: écrire une clé aléatoire, token de type https://jwt.io/
+JWT_RAND_SECRET: écrire une clé aléatoire
 
 ▹ A partir du dossier backend, exécutez npm install puis nodemon server; Le port utilisé est 3000.
 
